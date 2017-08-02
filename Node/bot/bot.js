@@ -58,7 +58,7 @@ function start_listening() {
 	// When a bot is added or removed we get an event here. Event type we are looking for is teamMember added
 	this.bot.on('conversationUpdate', (msg) => {
 
-		console.log('Sample app was added to the team');
+		console.log('Insight app was added to the team');
 
 		if (!msg.eventType === 'teamMemberAdded') return;
 		

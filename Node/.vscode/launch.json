@@ -27,13 +27,13 @@
             "program": "${workspaceRoot}\\app.js",
             "env": {
                 "NODE_ENV": "development",
-                "TEAMS_APP_ID": "[Your Teams App GUID Here]", //This is the Teams App ID from your Manifest
-                "MICROSOFT_APP_ID": "[Your Bot ID Here]", //Bot ID from Bot Framework
-                "MICROSOFT_APP_PASSWORD": "[Your Bot Password Here]", //Bot password from Bot Framework
+                "TEAMS_APP_ID": "73f3bd7f-246d-4700-ab6a-07fac97142b3", //This is the Teams App ID from your Manifest
+                "MICROSOFT_APP_ID": "73f3bd7f-246d-4700-ab6a-07fac97142b3", //Bot ID from Bot Framework
+                "MICROSOFT_APP_PASSWORD": "J5QKDAbOgDiBYbAHKpuWV8L", //Bot password from Bot Framework
                 "CONNECTOR_APP_ID": "[Your Connector ID]", //Registered Connector ID from the Connector Developer Portal
                 "AUTH_CLIENT_ID" : "", //Auth client ID
                 "AUTH_CLIENT_SECRET" : "", //Auth client secret
-                "BASE_URI": "[https://YourHostURL.ext]" //Base name for your tab/application, where you are hosting this code, e.g. https://xxxxxxx.ngrok.io
+                "BASE_URI": "https://a2d65448.ngrok.io" //Base name for your tab/application, where you are hosting this code, e.g. https://xxxxxxx.ngrok.io
             }
         }
     ]

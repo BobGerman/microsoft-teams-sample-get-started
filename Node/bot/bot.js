@@ -51,6 +51,21 @@ function start_listening() {
 				}
 			} else if (cmd.includes('link')) {
 				createDeepLink(session.message, this.bot, params);
+			} else if (cmd.includes('remember')) {
+				sendMessage(session.message, this.bot,
+					"OK I'll remember " + params);
+				session.userData.text = "Hello";
+				session.save();
+				sendMessage(session.message, this.bot,
+					"Your user data is " + JSON.stringify(session.userData));
+				console.log('Remember!');
+			} else if (cmd.includes('remind')) {
+				// sendMessage(session.message, this.bot,
+				// 	"OK I'll remember " + params);
+				//session.userData = {text: "Hello"};
+				sendMessage(session.message, this.bot,
+					"Your user data is " + JSON.stringify(session.userData));
+				console.log('Remember!');
 			}
 		}
 	});

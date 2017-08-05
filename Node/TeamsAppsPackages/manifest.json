@@ -27,8 +27,8 @@
         {
             "entityId": "mytasks",
             "name": "Project Helper",
-            "contentUrl": "https://a2d65448.ngrok.io/tabs/index",
-            "websiteUrl": "https://a2d65448.ngrok.io/tabs/index?web=1",
+            "contentUrl": "https://551b53bf.ngrok.io/tabs/index",
+            "websiteUrl": "https://551b53bf.ngrok.io/tabs/index?web=1",
             "scopes": [
                 "personal"
             ]
@@ -36,8 +36,8 @@
         {
             "entityId": "info",
             "name": "Info",
-            "contentUrl": "https://a2d65448.ngrok.io/tabs/about",
-            "websiteUrl": "https://a2d65448.ngrok.io/tabs/about?web=1",
+            "contentUrl": "https://551b53bf.ngrok.io/tabs/about",
+            "websiteUrl": "https://551b53bf.ngrok.io/tabs/about?web=1",
             "scopes": [
                 "personal"
             ]
@@ -45,7 +45,7 @@
     ],
     "configurableTabs": [
         {
-            "configurationUrl": "https://a2d65448.ngrok.io/tabs/configure",
+            "configurationUrl": "https://551b53bf.ngrok.io/tabs/configure",
             "canUpdateConfiguration": true,
             "scopes": [
                 "team"
@@ -124,6 +124,6 @@
         "messageTeamMembers"
     ],
     "validDomains": [
-        "a2d65448.ngrok.io"
+        "551b53bf.ngrok.io"
     ]
 }

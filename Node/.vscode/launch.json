@@ -33,7 +33,7 @@
                 "CONNECTOR_APP_ID": "[Your Connector ID]", //Registered Connector ID from the Connector Developer Portal
                 "AUTH_CLIENT_ID" : "", //Auth client ID
                 "AUTH_CLIENT_SECRET" : "", //Auth client secret
-                "BASE_URI": "https://a2d65448.ngrok.io" //Base name for your tab/application, where you are hosting this code, e.g. https://xxxxxxx.ngrok.io
+                "BASE_URI": "https://551b53bf.ngrok.io" //Base name for your tab/application, where you are hosting this code, e.g. https://xxxxxxx.ngrok.io
             }
         }
     ]

@@ -72,6 +72,11 @@ function start_listening() {
 				session.userData.project = split[3] + " " + split[4];
 				session.save();
 				session.beginDialog('add');
+			}  else if (cmd.includes('bill')) {
+				session.userData.hours = split[4];
+				session.userData.project = split[1] + " " + split[2];
+				session.save();
+				session.beginDialog('bill');
 			}
 		}
 	});
@@ -81,19 +86,6 @@ function start_listening() {
 			builder.Prompts.number(s, 'How many hours should I forecast this week?');
 		},
 		function (s, results) {
-			// sendMessage(s.message, this.bot, "Test");
-			// sendMessage(session.message, this.bot,
-			// 	"OK adding " + session.userData.person);
-			// sendCardMessage(session, this.bot, "CARD");
-			// s.send("OK I will add " +
-			// 	s.userData.person +
-			// 	" to " +
-			// 	s.userData.project +
-			// 	" for " +
-			// 	results.response +
-			// 	" hours this week."
-			// 	);
-
 			var card = new builder.ThumbnailCard()
 				.title("Project Assignment")
 				.subtitle(s.userData.project.toUpperCase())
@@ -105,6 +97,44 @@ function start_listening() {
 				.buttons([
 					builder.CardAction.openUrl(null, 'http://www.microsoft.com', 'View Forecast'),
 					builder.CardAction.openUrl(null, 'https://products.office.com/en-us/microsoft-teams/group-chat-software', 'Notify ' + capitalizeFirstLetter(s.userData.person)),
+				]);
+
+			var msg = new builder.Message()
+				.address(s.message.address)
+				.textFormat(builder.TextFormat.markdown)
+				.addAttachment(card);
+
+			s.send(msg, function(err, addresses) {
+				if (addresses && addresses.length > 0) {
+					sentMessages[taskId] = {
+						'msg': msg, 'address': addresses[0]
+					};
+				}
+			});
+			s.endDialog();
+		}
+	]);
+
+	this.bot.dialog('bill', [
+		function (s) {
+			builder.Prompts.text(s, 'Was the work delivered from your default location (Massachusetts)?');
+		},
+		function (s, results) {
+			var date = new Date();
+			var dateString = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
+			var card = new builder.ThumbnailCard()
+				.title("Time Card")
+				.subtitle(s.userData.project.toUpperCase())
+				.text("Worked " + s.userData.hours + " hours " +
+					  "on:" + dateString + "\n\n" +
+				      "Your time has been entered into SAP and STaF.\n" +
+				 	  "There are 3 hours remaining in your forecast this week on " + capitalizeFirstLetter(s.userData.project) + ".")
+				.images([
+					builder.CardImage.create(null, `${process.env.BASE_URI}/static/img/Insight_92x92.png`)
+					])
+				.buttons([
+					builder.CardAction.openUrl(null, 'http://www.microsoft.com', 'View Forecast'),
+					builder.CardAction.openUrl(null, 'https://products.office.com/en-us/microsoft-teams/group-chat-software', 'Submit hours'),
 				]);
 
 			var msg = new builder.Message()

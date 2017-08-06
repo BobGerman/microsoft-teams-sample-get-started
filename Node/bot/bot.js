@@ -36,7 +36,7 @@ function start_listening() {
 		//Single word commands:
 		if (split.length < 2 ) {
 			if (cmd.includes('help')) {
-				sendHelpMessage(session.message, this.bot, `Hi, I'm a sample bot in Node.js`);
+				sendHelpMessage(session.message, this.bot, `Hi, I'm the Insight Bot, ready to make your life as an Insight consultant easier!`);
 			} else {
 				sendHelpMessage(session.message, this.bot, `I'm sorry, I did not understand you :( `);
 			}
@@ -95,7 +95,7 @@ function start_listening() {
 					builder.CardImage.create(null, `${process.env.BASE_URI}/static/img/Insight_92x92.png`)
 					])
 				.buttons([
-					builder.CardAction.openUrl(null, 'http://www.microsoft.com', 'View Forecast'),
+					builder.CardAction.openUrl(null, 'https://teams.microsoft.com/_#/xlsx/viewer/teams/https:~2F~2Fbgtest17.sharepoint.com~2Fsites~2FProjectAlpha~2FShared%20Documents~2FProject%20Alpha~2FForecast.xlsx?threadId=19:97d9a1c94e1b4348a2e438510e7e56c3@thread.skype&baseUrl=https:~2F~2Fbgtest17.sharepoint.com~2Fsites~2FProjectAlpha&fileId=987EE505-8B56-4C31-B6AF-917BAE71CDA9&ctx=files', 'View Forecast'),
 					builder.CardAction.openUrl(null, 'https://products.office.com/en-us/microsoft-teams/group-chat-software', 'Notify ' + capitalizeFirstLetter(s.userData.person)),
 				]);
 
@@ -133,7 +133,7 @@ function start_listening() {
 					builder.CardImage.create(null, `${process.env.BASE_URI}/static/img/Insight_92x92.png`)
 					])
 				.buttons([
-					builder.CardAction.openUrl(null, 'http://www.microsoft.com', 'View Forecast'),
+					builder.CardAction.openUrl(null, 'https://teams.microsoft.com/_#/xlsx/viewer/teams/https:~2F~2Fbgtest17.sharepoint.com~2Fsites~2FProjectAlpha~2FShared%20Documents~2FProject%20Alpha~2FForecast.xlsx?threadId=19:97d9a1c94e1b4348a2e438510e7e56c3@thread.skype&baseUrl=https:~2F~2Fbgtest17.sharepoint.com~2Fsites~2FProjectAlpha&fileId=987EE505-8B56-4C31-B6AF-917BAE71CDA9&ctx=files', 'View Forecast'),
 					builder.CardAction.openUrl(null, 'https://products.office.com/en-us/microsoft-teams/group-chat-software', 'Submit hours'),
 				]);
 
@@ -169,7 +169,7 @@ function start_listening() {
 			
 			// See if the member added was our bot
 			if (members[i].id.includes(process.env.MICROSOFT_APP_ID)) {
-				sendHelpMessage(msg, this.bot, `Hi, I'm a sample bot in Node.js!`);
+				sendHelpMessage(msg, this.bot, `Hi, I'm the Insight Bot, ready to make your life as an Insight consultant easier!`);
 			}
 		}
 	});
@@ -294,9 +294,9 @@ function sendMessage(message, bot, text) {
 // Helper method to send a generic help message
 function sendHelpMessage(message, bot, firstLine) {
 	var text = `**${firstLine}** \n\n\n Here's what I can help you do \n\n\n`
-	text += `To create a new task, you can type **create** followed by the task name\n\n`
-	text += `To find an existing task, you can type **find** followed by the task name\n\n`
-	text += `To create a deep link, you can type **link** followed by the tab name`;
+	text += `To add someone to a project, you can type **add** followed by the person and project names\n\n`
+	text += `To bill on a project you can type **bill** followed by the project name and number of hours\n\n`
+	text += `To check project status, you can type **status** followed by the project name`;
 
 	sendMessage(message, bot, text);
 }

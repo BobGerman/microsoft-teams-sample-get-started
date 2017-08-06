@@ -72,16 +72,16 @@
                             "description": "Find out what I can do"
                         },
                         {
-                            "title": "create",
-                            "description": "Create a brand new task, just give me a title"
+                            "title": "add",
+                            "description": "Add someone to a project, just say who and what project"
                         },
                         {
-                            "title": "find",
-                            "description": "I can help you find a task, just give me a title"
+                            "title": "bill",
+                            "description": "Report time worked on a project, just say how many hours and what project"
                         },
                         {
-                            "title": "link",
-                            "description": "Create a link to a tab, just give me the tab name"
+                            "title": "status",
+                            "description": "Check your status on a project, just say which project"
                         }
                     ]
                 }
@@ -106,13 +106,13 @@
             "commands": [
                 {
                     "id": "searchCmd",
-                    "title": "Search tasks",
-                    "description": "Search tasks",
+                    "title": "Search projects",
+                    "description": "Search projects",
                     "parameters": [
                         {
                             "name": "search",
                             "title": "Search",
-                            "description": "Search tasks"
+                            "description": "Search projects"
                         }
                     ]
                 }

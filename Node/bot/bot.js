@@ -14,6 +14,7 @@ var connector; //This is the connector
 var bot; //Bot from botbuilder sdk
 var sentMessages = {}; //Dictionary that maps task IDs to messages that have already been sent.
 
+
 ///////////////////////////////////////////////////////
 //	Bot and listening
 ///////////////////////////////////////////////////////
@@ -66,9 +67,61 @@ function start_listening() {
 				sendMessage(session.message, this.bot,
 					"Your user data is " + JSON.stringify(session.userData));
 				console.log('Remember!');
+			} else if (cmd.includes('add')) {
+				session.userData.person = split[1];
+				session.userData.project = split[3] + " " + split[4];
+				session.save();
+				session.beginDialog('add');
 			}
 		}
 	});
+
+	this.bot.dialog('add', [
+		function (s) {
+			builder.Prompts.number(s, 'How many hours should I forecast this week?');
+		},
+		function (s, results) {
+			// sendMessage(s.message, this.bot, "Test");
+			// sendMessage(session.message, this.bot,
+			// 	"OK adding " + session.userData.person);
+			// sendCardMessage(session, this.bot, "CARD");
+			// s.send("OK I will add " +
+			// 	s.userData.person +
+			// 	" to " +
+			// 	s.userData.project +
+			// 	" for " +
+			// 	results.response +
+			// 	" hours this week."
+			// 	);
+
+			var card = new builder.ThumbnailCard()
+				.title("Project Assignment")
+				.subtitle(s.userData.project.toUpperCase())
+				.text("Assigning " + s.userData.person)
+				.text("Beginning with " + results.response + " hours this week")
+				.images([
+					builder.CardImage.create(null, `${process.env.BASE_URI}/static/img/Insight_92x92.png`)
+					])
+				.buttons([
+					builder.CardAction.openUrl(null, 'http://www.microsoft.com', 'View Forecast'),
+					builder.CardAction.openUrl(null, 'https://products.office.com/en-us/microsoft-teams/group-chat-software', 'Notify ' + capitalizeFirstLetter(s.userData.person)),
+				]);
+
+			var msg = new builder.Message()
+				.address(s.message.address)
+				.textFormat(builder.TextFormat.markdown)
+				.addAttachment(card);
+
+			s.send(msg, function(err, addresses) {
+				if (addresses && addresses.length > 0) {
+					sentMessages[taskId] = {
+						'msg': msg, 'address': addresses[0]
+					};
+				}
+			});
+			s.endDialog();
+		}
+	]);
 
 	// When a bot is added or removed we get an event here. Event type we are looking for is teamMember added
 	this.bot.on('conversationUpdate', (msg) => {
@@ -115,6 +168,10 @@ function createDeepLink(message, bot, tabName) {
 	text += `\`${decodeURIComponent(url)}\``;
 
 	sendMessage(message, bot, text);
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 // Stub for sending a message with a new task

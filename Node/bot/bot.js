@@ -121,14 +121,14 @@ function start_listening() {
 		},
 		function (s, results) {
 			var date = new Date();
-			var dateString = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
+			var dateString = "August 6, 2017"; //date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
 			var card = new builder.ThumbnailCard()
 				.title("Time Card")
-				.subtitle(s.userData.project.toUpperCase())
+				.subtitle("PROJECT ALPHA - 5 HOURS")//s.userData.project.toUpperCase())
 				.text("Worked " + s.userData.hours + " hours " +
 					  "on:" + dateString + "\n\n" +
 				      "Your time has been entered into SAP and STaF.\n" +
-				 	  "There are 3 hours remaining in your forecast this week on " + capitalizeFirstLetter(s.userData.project) + ".")
+				 	  "There are 3 hours remaining in your forecast this week on Project Alpha.")
 				.images([
 					builder.CardImage.create(null, `${process.env.BASE_URI}/static/img/Insight_92x92.png`)
 					])

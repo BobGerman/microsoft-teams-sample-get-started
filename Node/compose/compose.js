@@ -42,25 +42,24 @@ function generateResults(){
 	}
 
 	var attachments = [];
-	for(var i = 0; i < 5; i++){
-		attachments.push(generateResultAttachment());
-	}
+	attachments.push(generateThumbnail("Project Alpha", "Contoso", "BlueMetal1.png"));
+	attachments.push(generateThumbnail("Project Beta", "Litware", "BlueMetal2.png"));
 
 	results.composeExtension.attachments = attachments;
 	return results;
 }
 
 // This generates a single random thumbnail
-function generateThumbnail(){
+function generateThumbnail(projectName, clientName, imageFile){
 	return {
 		contentType: 'application/vnd.microsoft.card.thumbnail',
 		content: {
-			title: utils.getTitle(),
-			subtitle: `Assigned to ${utils.getName()}`,
-			text: faker.fake('{{lorem.sentence}}'),
+			title: projectName,
+			subtitle: "Structured Collaboration",
+			text: "Project for " + clientName,
 			images: [
 				{
-					url: `${process.env.BASE_URI}/static/img/image${Math.floor(Math.random() * 9) + 1}.png`
+					url: `${process.env.BASE_URI}/static/img/${imageFile}`
 				}
 			]
 		}
